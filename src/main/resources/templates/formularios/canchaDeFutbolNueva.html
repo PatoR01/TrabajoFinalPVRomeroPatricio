@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="|${editar ?: 'Agregar'} una cancha de fútbol|"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main class="container">
+        <h1 th:text="|${editar ?: 'Agregar'} una cancha de fútbol|"></h1>
+        <form action="" method="post" th:object="${canchaDeFutbol}" enctype="multipart/form-data">
+
+            <div th:classappend="${#fields.hasErrors('capacidad')} ? 'has-validation'">
+                <label for="capacidad" class="form-label">Capacidad</label>
+                <input class="form-control" type="text" id="capacidad" th:field="{capacidad}"
+                       th:aria-invalid="${#fields.hasErrors('capacidad')}" aria-describedby="capacidad-error"
+                       th:classappend="${#fields.hasErrors('capacidad')} ? 'is-invalid'">
+                <p id="capacidad-error" class="invalid-feedback" th:if="${#fields.hasErrors('capacidad')}" th:errors="{capacidad}"></p>
+            </div>
+<div th:classappend="${#fields.hasErrors('precio')} ? 'has-validation'">
+                <label for="precio" class="form-label">Precio</label>
+                <input class="form-control" type="text" id="precio" th:field="{precio}"
+                       th:aria-invalid="${#fields.hasErrors('precio')}" aria-describedby="precio-error"
+                       th:classappend="${#fields.hasErrors('precio')} ? 'is-invalid'">
+                <p id="precio-error" class="invalid-feedback" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></p>
+            </div>
+            <div th:classappend="${fileErrorMessage} ? 'has-validation'">
+                <label for="file" class="form-label">Imagen</label>
+                <input type="file" id="file" name="file" class="form-control"
+                       aria-describedby="file-error"
+                       th:aria-invalid="${fileErrorMessage} ? 'true'" th:classappend="${fileErrorMessage} ? 'is-invalid'">
+                <p id="file-error" class="invalid-feedback" th:if="${fileErrorMessage}" th:text="${fileErrorMessage}"></p>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2" th:text="${editar ?: 'Agregar'}"></button>
+        </form>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

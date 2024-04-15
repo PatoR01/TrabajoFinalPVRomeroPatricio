@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${canchaDeFutbol.codigo}">Cancha de Fútbol</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="../static/css/estrellas.css" th:href="@{/css/estrellas.css}" rel="stylesheet">
+</head>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main th:object="${canchaDeFutbol}" class="container">
+        <section>
+            <!-- Aquí puedes mostrar la imagen de la cancha de fútbol -->
+            <!-- Utiliza th:if para verificar si hay una imagen disponible -->
+            <img class="img-fluid" src="#" alt="..." th:if="${canchaDeFutbol.imagen}" th:src="${canchaDeFutbol.imagen}" th:alt="'imagen de ' + ${canchaDeFutbol.codigo}">
+            <!-- Enlaces para editar y eliminar la cancha de fútbol -->
+            <div class="row" th:if="${usuarioId} == ${canchaDeFutbol.creador.id}">
+                <a class="col-auto" href="#" th:href="@{/cancha/{id}/editar(id=${canchaDeFutbol.id})}"><small>[Editar]</small></a>
+                <a class="col-auto" href="#" th:href="@{/cancha/{id}/eliminar(id=${canchaDeFutbol.id})}"><small>[Eliminar]</small></a>
+            </div>
+            <!-- Nombre de la cancha de fútbol -->
+            <h1 th:text="${canchaDeFutbol.codigo}">Nombre de la Cancha de Fútbol</h1>
+            <!-- Descripción de la cancha de fútbol -->
+            <p th:if="${canchaDeFutbol.descripcion}" th:text="${canchaDeFutbol.descripcion}">Descripción de la Cancha de Fútbol</p>
+            <!-- Capacidad de la cancha de fútbol -->
+            <p th:text="'Capacidad: ' + ${canchaDeFutbol.capacidad}">Capacidad de la Cancha de Fútbol</p>
+            <!-- Precio de la cancha de fútbol -->
+            <p th:text="'Precio: $' + ${canchaDeFutbol.precio}">Precio de la Cancha de Fútbol</p>
+            <!-- Horarios de la cancha de fútbol -->
+            <p th:text="'Horarios: ' + ${canchaDeFutbol.horario1} + ', ' + ${canchaDeFutbol.horario2} + ', ' + ${canchaDeFutbol.horario3}">Horarios de la Cancha de Fútbol</p>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
