@@ -30,6 +30,10 @@
                 </main>
                 <footer class="card-footer">
                     <small class="text-body-secondary">Precio: <span th:text="${cancha.precio}">0.0</span></small>
+
+                    <a class="btn btn-primary mb-2"  th:href="@{/reservar(canchaId=${cancha.id}, horario=${cancha.horario1})}" th:text="'Reservar para: ' + ${cancha.horario1}"></a>
+                    <a class="btn btn-primary mb-2" th:href="@{/reservar(canchaId=${cancha.id}, horario=${cancha.horario2})}" th:text="'Reservar para: ' + ${cancha.horario2}"></a>
+                    <a class="btn btn-primary mb-2" th:href="@{/reservar(canchaId=${cancha.id}, horario=${cancha.horario3})}" th:text="'Reservar para: ' + ${cancha.horario3}"></a>
                 </footer>
             </article>
         </div>

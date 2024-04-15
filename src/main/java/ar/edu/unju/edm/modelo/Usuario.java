@@ -1,5 +1,7 @@
 package ar.edu.unju.edm.modelo;
 
+import ar.edu.unju.edm.modelo.Reserva;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Collection;
@@ -20,10 +22,15 @@ public class Usuario {
 	@Column(name = "apellido")
 	private String apellido;
 
+	@Column(name = "email")
 	private String email;
 
 	@JsonIgnore
 	private String password;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private Collection<Reserva> reservas;
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
@@ -33,11 +40,14 @@ public class Usuario {
 			inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
 			)
 	private Collection<Rol> roles;
-	
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "creador", cascade = CascadeType.REMOVE)
-	private Collection<Valoracion> valoraciones;
+	public Collection<Reserva> getReservas() {
+		return this.reservas;
+	}	
+
+	public void setReservas(Collection<Reserva> reservas) {
+		this.reservas = reservas;
+	}
 
 	public Long getId() {
 		return id;
@@ -87,15 +97,7 @@ public class Usuario {
 		this.roles = roles;
 	}
 
-	public Collection<Valoracion> getValoraciones() {
-		return valoraciones;
-	}
-
-	public void setValoraciones(Collection<Valoracion> valoraciones) {
-		this.valoraciones = valoraciones;
-	}
-
-	public Usuario(Long id, String nombre, String apellido, String email, String password, Collection<Rol> roles, Collection<Valoracion> valoraciones) {
+	public Usuario(Long id, String nombre, String apellido, String email, String password, Collection<Rol> roles) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -103,7 +105,6 @@ public class Usuario {
 		this.email = email;
 		this.password = password;
 		this.roles = roles;
-		this.valoraciones = valoraciones;
 	}
 
 	public Usuario(String nombre, String apellido, String email, String password, Collection<Rol> roles) {
