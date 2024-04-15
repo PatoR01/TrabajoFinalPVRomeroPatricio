@@ -29,8 +29,8 @@ public class AdminControlador {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         model.addAttribute("usuarios", usuarioServicio.listarUsuarios());
-        model.addAttribute("puntosDeInteres", canchaDeFutbolServicio.buscarTodos());
-        model.addAttribute("valoraciones", valoracionServicio.buscarTodos());
+        //model.addAttribute("puntosDeInteres", canchaDeFutbolServicio.buscarTodos());
+        model.addAttribute("canchas", canchaDeFutbolServicio.buscarTodos());
         return "admin";
     }
 
@@ -40,7 +40,7 @@ public class AdminControlador {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
 
-        canchaDeFutbolServicio.eliminar(canchaDeFutbolServicio.buscarPorId(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        canchaDeFutbolServicio.eliminarCanchaDeFutbol(canchaDeFutbolServicio.buscarPorId(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
         return "redirect:/admin";
     }
 

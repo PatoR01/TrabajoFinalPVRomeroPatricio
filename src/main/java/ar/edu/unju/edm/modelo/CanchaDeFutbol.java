@@ -15,6 +15,9 @@ public class CanchaDeFutbol {
     private Long id;
 
     @NotBlank
+    private String nombre;
+
+    @NotBlank
     private String capacidad; // Puede ser "FUTBOL 7" o "FUTBOL 5"
 
     private double precio;
@@ -54,6 +57,14 @@ public class CanchaDeFutbol {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCapacidad() {

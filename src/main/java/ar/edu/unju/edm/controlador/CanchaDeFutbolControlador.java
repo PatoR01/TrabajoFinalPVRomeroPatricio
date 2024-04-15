@@ -31,7 +31,7 @@ public class CanchaDeFutbolControlador {
     @GetMapping("/cancha/{id}")
     public String mostrarCanchaDeFutbolPorId(@PathVariable Long id, Model model) {
         var cancha = canchaDeFutbolServicio.buscarPorId(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        model.addAttribute("cancha", cancha);
+        model.addAttribute("canchaDeFutbol", cancha);
         return "canchaDeFutbol";
     }
 

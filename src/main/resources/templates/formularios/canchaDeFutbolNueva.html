@@ -11,26 +11,45 @@
         <h1 th:text="|${editar ?: 'Agregar'} una cancha de fútbol|"></h1>
         <form action="" method="post" th:object="${canchaDeFutbol}" enctype="multipart/form-data">
 
+            <div th:classappend="${fileErrorMessage} ? 'has-validation'">
+                <label for="nombre" class="formo-label"> Nombre de la cancha de Futbol </label> 
+                <input type="text" id="nombre" name="nombre" class="form-control" th:field="*{nombre}">
+            </div>
+
             <div th:classappend="${#fields.hasErrors('capacidad')} ? 'has-validation'">
                 <label for="capacidad" class="form-label">Capacidad</label>
-                <input class="form-control" type="text" id="capacidad" th:field="{capacidad}"
+                <input class="form-control" type="text" id="capacidad" th:field="*{capacidad}"
                        th:aria-invalid="${#fields.hasErrors('capacidad')}" aria-describedby="capacidad-error"
                        th:classappend="${#fields.hasErrors('capacidad')} ? 'is-invalid'">
                 <p id="capacidad-error" class="invalid-feedback" th:if="${#fields.hasErrors('capacidad')}" th:errors="{capacidad}"></p>
             </div>
 <div th:classappend="${#fields.hasErrors('precio')} ? 'has-validation'">
                 <label for="precio" class="form-label">Precio</label>
-                <input class="form-control" type="text" id="precio" th:field="{precio}"
+                <input class="form-control" type="text" id="precio" th:field="*{precio}"
                        th:aria-invalid="${#fields.hasErrors('precio')}" aria-describedby="precio-error"
                        th:classappend="${#fields.hasErrors('precio')} ? 'is-invalid'">
                 <p id="precio-error" class="invalid-feedback" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></p>
             </div>
+            <!--
             <div th:classappend="${fileErrorMessage} ? 'has-validation'">
                 <label for="file" class="form-label">Imagen</label>
                 <input type="file" id="file" name="file" class="form-control"
                        aria-describedby="file-error"
                        th:aria-invalid="${fileErrorMessage} ? 'true'" th:classappend="${fileErrorMessage} ? 'is-invalid'">
                 <p id="file-error" class="invalid-feedback" th:if="${fileErrorMessage}" th:text="${fileErrorMessage}"></p>
+            </div>
+            -->
+            <div th:classappend="${fileErrorMessage} ? 'has-validation'">
+                <label for="horario1" class="formo-label"> Horario 1 </label> 
+                <input type="text" id="horario1" name="horario1" class="form-control" th:field="*{horario1}">
+            </div>
+            <div th:classappend="${fileErrorMessage} ? 'has-validation'">
+                <label for="horario2" class="formo-label"> Horario 2 </label> 
+                <input type="text" id="horario1" name="horario2" class="form-control" th:field="*{horario2}">
+            </div>
+            <div th:classappend="${fileErrorMessage} ? 'has-validation'">
+                <label for="horario3" class="formo-label"> Horario 3 </label> 
+                <input type="text" id="horario1" name="horario3" class="form-control" th:field="*{horario3}">
             </div>
             <button type="submit" class="btn btn-primary mt-2" th:text="${editar ?: 'Agregar'}"></button>
         </form>

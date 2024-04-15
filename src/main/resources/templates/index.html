@@ -17,22 +17,15 @@
     <a class="btn btn-primary mb-2" href="#" th:href="@{/cancha/nueva}">Agregar cancha de fútbol</a>
 
     <div class="row row-cols-2 row-cols-md-3 g-4">
-        <div th:each="cancha: ${canchas}" th:object="${cancha}" class="col">
+        <div th:each="cancha: ${canchas}" class="col">
             <article class="card h-100">
-                <a href="#" th:href="@{/cancha/{id}(id={id})}">
-                    <img
-                            src="https://placehold.co/600x400"
-                            alt="Placeholder"
-                            class="card-img-top"
-                            th:src="{imagen}"
-                            th:alt="'imagen de ' + *{codigo}">
-                            </a>
+                <!-- <a href="#" th:href="@{/cancha/{cancha.id}(id={cancha.id})}"></a> -->
                 <main class="card-body">
+                    <!--
                     <a href="#" th:href="@{/cancha/{id}(id={id})}">
-                        <h5 class="card-title" th:text="{codigo}">Titulo</h5>
-                    </a>
-                    <p class="card-text" th:if="*{descripcion}" th:text="${#strings.abbreviate(cancha.descripcion,280)}">
-                        Descripción de la cancha de fútbol
+                        <h5 class="card-title" th:text="{cancha.nombre}">Titulo</h5>
+                    </a> -->
+                    <p class="card-text" th:text="${#strings.abbreviate(cancha.horario1,280)}">
                     </p>
                 </main>
                 <footer class="card-footer">
