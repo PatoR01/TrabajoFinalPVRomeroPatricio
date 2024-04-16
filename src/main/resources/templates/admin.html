@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Administración</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<body>
-<nav th:replace="~{fragments/navbar :: navbar}"></nav>
-<main class="container">
-    <h1 class="mb-2">Administración</h1>
 
-<h1>Puntos de interés</h1>
-        <a class="btn btn-primary mb-2" href="#" th:href="@{/poi/nuevo}">Agregar cancha</a>
-        
-    <section>
-        <h2 class="lead"> Canchas </h2>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main class="container">
+        <h1 class="mb-2">Administración</h1>
+
+        <h1> Administrar Canchas </h1>
+        <a class="btn btn-primary mb-2" href="#" th:href="@{/cancha/nueva}">Agregar cancha de fútbol</a>
+
+        <section>
+            <h2 class="lead"> Canchas </h2>
             <table class="table table-striped table-bordered">
                 <thead class="table-dark">
                     <tr>
@@ -24,6 +27,7 @@
                         <th>Horario 1</th>
                         <th>Horario 2</th>
                         <th>Horario 3</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,31 +38,43 @@
                         <td th:text="${cancha.horario1}">ID</td>
                         <td th:text="${cancha.horario2}">ID</td>
                         <td th:text="${cancha.horario3}">ID</td>
+                        <td>
+                            <a href="#" th:href="@{/admin/eliminar/cancha/{id}(id=${cancha.id})}" class="btn btn-danger"
+                                title="Eliminar">
+                                <svg aria-label="eliminar" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                </svg>
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-    </section>
-    <section>
-        <h2 class="lead"> Usuarios </h2>
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="usuario: ${usuarios}">
-                <td th:text="${usuario.id}"></td>
-                <td th:text="${usuario.nombre}"></td>
-                <td th:text="${usuario.apellido}"></td>
-                <td th:text="${usuario.email}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </section>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        </section>
+        <section>
+            <h2 class="lead"> Usuarios </h2>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario: ${usuarios}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.apellido}"></td>
+                        <td th:text="${usuario.email}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>

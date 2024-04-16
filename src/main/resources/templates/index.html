@@ -14,23 +14,16 @@
 
 <div class="container">
     <h1>Canchas de fútbol</h1>
-    <a class="btn btn-primary mb-2" href="#" th:href="@{/cancha/nueva}">Agregar cancha de fútbol</a>
 
     <div class="row row-cols-2 row-cols-md-3 g-4">
         <div th:each="cancha: ${canchas}" class="col">
             <article class="card h-100">
                 <!-- <a href="#" th:href="@{/cancha/{cancha.id}(id={cancha.id})}"></a> -->
                 <main class="card-body">
-                    <!--
-                    <a href="#" th:href="@{/cancha/{id}(id={id})}">
-                        <h5 class="card-title" th:text="{cancha.nombre}">Titulo</h5>
-                    </a> -->
-                    <p class="card-text" th:text="${#strings.abbreviate(cancha.horario1,280)}">
-                    </p>
+                    <h1 class="card-text" th:text="${cancha.nombre}"></h1> 
+                    <h3 class="text-body-secondary">Precio: <span th:text="${cancha.precio}">0.0</span></h3>
                 </main>
                 <footer class="card-footer">
-                    <small class="text-body-secondary">Precio: <span th:text="${cancha.precio}">0.0</span></small>
-
                     <a class="btn btn-primary mb-2"  th:href="@{/reservar(canchaId=${cancha.id}, horario=${cancha.horario1})}" th:text="'Reservar para: ' + ${cancha.horario1}"></a>
                     <a class="btn btn-primary mb-2" th:href="@{/reservar(canchaId=${cancha.id}, horario=${cancha.horario2})}" th:text="'Reservar para: ' + ${cancha.horario2}"></a>
                     <a class="btn btn-primary mb-2" th:href="@{/reservar(canchaId=${cancha.id}, horario=${cancha.horario3})}" th:text="'Reservar para: ' + ${cancha.horario3}"></a>
