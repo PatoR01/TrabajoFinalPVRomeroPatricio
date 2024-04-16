@@ -39,7 +39,7 @@
                         <td th:text="${cancha.horario2}">ID</td>
                         <td th:text="${cancha.horario3}">ID</td>
                         <td>
-                            <a href="#" th:href="@{/admin/eliminar/cancha/{id}(id=${cancha.id})}" class="btn btn-danger"
+                            <a href="#" th:href="@{/cancha/{id}/eliminar(id=${cancha.id})}" class="btn btn-danger"
                                 title="Eliminar">
                                 <svg aria-label="eliminar" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">

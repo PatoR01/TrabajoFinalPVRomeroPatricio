@@ -17,10 +17,10 @@ public class Reserva {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Usuario usuario;
+	public Usuario usuario;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private CanchaDeFutbol canchaDeFutbol;
+	public CanchaDeFutbol canchaDeFutbol;
 
 	private boolean estado = true;
 

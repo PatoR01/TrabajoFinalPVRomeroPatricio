@@ -35,7 +35,7 @@ public class ReservaControlador {
         reservaServicio.agregarReserva(nueva_reserva);
         usuario.getReservas().add(nueva_reserva);
 
-        return "/reservas";
+        return "redirect:/reservas";
     }
     @GetMapping("/reservas") 
     public String mostrarReservasDeUsuario(Model model) {
